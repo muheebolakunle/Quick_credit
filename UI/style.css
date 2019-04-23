@@ -19,7 +19,7 @@ ul{
 
 a{
     text-decoration: none;
-    color: #014399
+    color: #405d27;
 }
 
 h3{
@@ -40,11 +40,12 @@ input:focus {
  border-color: #5bd483;
 }
 
-.highlight,
-.current{
+.highlight{
  color:#05ff1afa;
  font-weight:bolder;
 }
+
+
 
 .bolder{
  font-weight: bolder
@@ -189,6 +190,68 @@ header a:hover{
     color: #000;
   }
 
+
+/* LOAN PAGE */
+  .form #dialog{
+      background: #dc9ced;
+      color: #000;
+      border: #405d27 2px;
+      border-radius: 5px;
+      display: none;
+      margin-bottom: 20px;
+      padding: 10px 0 10px 0;
+  }
+
+  aside#profile{
+    float: left;
+    width: 20%;
+    background: #405d27;
+    color: #ffffff;
+    margin: 20px 10px 0 15px;
+    padding: 10px;
+    min-height: 450px;
+    border-radius: 5px
+  }
+
+  main#main-profile{
+    float: right;
+    width: 75%
+  }
+
+  #sidenav li{
+    display: block;
+    margin: 10px 0 10px 0;
+    padding: 5px 20px 5px 20px;
+    background: #ADED9C;
+    border-radius: 3px;
+
+
+}
+
+#sidenav a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#sidenav a:hover{
+    font-weight: bold;
+    color:#c92c75b2;
+}
+
+.current{
+    color: #c92c75b2;
+    font-weight:bolder;
+
+}
+
+footer#loan-footer{
+    clear: both;
+    position: relative;
+    height: 40px;
+    margin-top: -40px;
+  }
+
   /* MEDIA QUERY */
   @media(max-width: 768px){
     .form__wrapper, .container,
@@ -201,6 +264,7 @@ header a:hover{
     header #branding,
      header nav,
      header nav li,
+     aside#profile,
      main#main-profile ,
      #main{
       float: none;
@@ -227,6 +291,35 @@ header a:hover{
       margin: 0px;
       width: 100%;
       padding: 0;
+    }
+
+    aside#profile{
+        min-height: 150px;
+        width: inherit;
+        margin: 10px  0 0 0;
+      }
+     
+      main#main-profile{
+        margin: 0;
+      }
+      #main .form__wrapper{
+        width: 100%;
+        margin-top: 0;
+      }
+      
+  }
+
+  @media screen and (min-width: 769px) and (max-width:899px) {
+    aside#profile{
+      float: none;
+      width: 80%;
+      min-height: 130px;
+      width: inherit;
+    }
+    
+    main#main-profile{
+      float: none;
+      width: 90%
     }
   }
    
