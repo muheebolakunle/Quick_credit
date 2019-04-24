@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: #ADED9C;
+    background: #5bd483;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,7 +19,7 @@ ul{
 
 a{
     text-decoration: none;
-    color: #405d27;
+    color: #000000;
 }
 
 h3{
@@ -37,7 +37,7 @@ button:hover {
 }
 
 input:focus {
- border-color: #5bd483;
+ border-color: #000000;
 }
 
 .highlight{
@@ -115,7 +115,7 @@ header a:hover{
 .form{
     display: flex;
     width: 100%;
-    background: #ffffff;
+    background: #c92c75b2;
     justify-content: center;
     box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
     flex-direction: column;
@@ -128,7 +128,7 @@ header a:hover{
     text-align: center;
     font-size: 1.3em;
     font-weight: 300;
-    color: #38385b;
+    color: #ffffff;
     box-shadow: 0 2px 2px #f2f2f2;
 }
 
@@ -158,10 +158,11 @@ header a:hover{
    margin-bottom: 20px;
    text-align: center;
    font-size: 12px;
+   color: #ffffff;
  }
  .form span a:hover{
      font-weight: bold;
-     color: rgb(0, 128, 32);
+     color: #05ff1afa;
 
  }
 
@@ -222,7 +223,7 @@ header a:hover{
     display: block;
     margin: 10px 0 10px 0;
     padding: 5px 20px 5px 20px;
-    background: #ADED9C;
+    background: #5bd483;
     border-radius: 3px;
 
 
@@ -250,6 +251,37 @@ footer#loan-footer{
     position: relative;
     height: 40px;
     margin-top: -40px;
+  }
+
+  .main-header{
+    background: #405d27;
+    color: #ffffff;
+    /* padding: 2px 0 2px 10px; */
+    padding: 0px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .main-header h3{
+    margin: 10px;
+    padding: 15px;
+    text-transform: capitalize;
+  }
+
+  .loan-container{
+    background: #c92c75b2;
+    margin: 20px 10px 10px 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .loan-container .loan-area{
+    background: #5bd483;
+    color: #000000;
+    margin: 18px 10px 10px 10px;
+    border-radius: 5px;
+    padding: 5px
+  
   }
 
   /* MEDIA QUERY */
