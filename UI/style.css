@@ -284,6 +284,26 @@ footer#loan-footer{
   
   }
 
+  .loan-container .loan-area h3,
+  .loan-container .loan-area p,
+  .loan-container .loan-area small{
+    margin: 5px 5px 5px 5px;
+    padding-top: 10px ;
+
+  }
+  .loan-container .loan-area small a{
+    margin-bottom: 50px;
+    background: #405d27;
+    color: #f2f2f2; 
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .loan-container .loan-area small a:hover{
+    color: #000000;
+    background: #05ff1afa;
+  } 
+
   /* MEDIA QUERY */
   @media(max-width: 768px){
     .form__wrapper, .container,
