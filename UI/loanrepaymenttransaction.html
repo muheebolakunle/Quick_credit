@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <title>QuickCredit|Loan Repayment Transaction</title>
+</head>
+<body>
+        <header>
+            <div class="container">
+                <div id="branding">
+                    <h1><span class="highlight">Q</span>uick<span class="highlight">C</span>redit</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="highlight"><a href="login.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div>
+            <aside id="profile" class="profile">
+                <h2>Admin</h2>
+                <br>
+                <hr>
+                <nav id="sidenav">
+                        <ul>
+                            <li class=""><a  href="specificloanapplication.html">loan details</a> </li>
+                            <li class=""><a  href="chooseloanstatus.html">change loan status</a> </li>
+                            <li class=""><a class="current" href="#">post loan repayment transaction</a> </li>  
+                        </ul>
+                </nav>
+            </aside>
+                
+            <main id="main-profile" class="container">
+                <section class="form__wrapper">
+                    <div class="form">
+                        <p class="form__header">Post Loan Repayment Transaction</p>
+                        <form id="signup-form" class="form__signup">
+                            
+                
+                            <div class="form__control">
+                                <input type="number" id="reg-email" class="form__input" placeholder="Monthly Installment" required>
+                            </div>
+
+                            <div class="form__control">
+                                <input type="number" id="reg-email" class="form__input" placeholder="Paid Amount" required>
+                            </div>
+
+                            <div class="form__control">
+                                <input type="number" id="reg-email" class="form__input" placeholder="Balance" required>
+                            </div>
+
+                
+                            <div class="form__control">
+                            <button id="apply" type="submit" class="button" onclick="show('dialog')">SUBMIT</button>
+                            </div>
+                            
+                        </form>
+        
+                        <div  id="dialog" class="dialog">
+                            Thank you, Your repayment transaction has been recorded <br>
+                        </div>
+                    </div>
+                </section>
+                    
+            </main>
+
+        </div>
+
+         
+        
+        <footer id="loan-footer" class="footer">
+                <p> QuickCredit <span>&copy;</span> 2019</p>
+        </footer>
+            <script src="app.js"></script> 
+</body>
+</html>
