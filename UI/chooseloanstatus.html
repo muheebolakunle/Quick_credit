@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <title>QuickCredit|Change Loan Status</title>
+</head>
+<body>
+        <header>
+            <div class="container">
+                <div id="branding">
+                    <h1><span class="highlight">Q</span>uick<span class="highlight">C</span>redit</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="highlight"><a href="login.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div>
+            <aside id="profile" class="profile">
+                <h2>Admin</h2>
+                <br>
+                <hr>
+                <nav id="sidenav">
+                        <ul>
+                            <li class=""><a href="specificloanapplication.html">loan details</a> </li>
+                            <li class=""><a  class="current" href="#">change loan status</a> </li>
+                            <li class=""><a href="#">post loan repayment transaction</a> </li>  
+                        </ul>
+                </nav>
+            </aside>
+                
+            <main id="main-profile" class="container">
+                    <section class="form__wrapper">
+                            <div class="form">
+                            <p class="form__header">Select Loan Status</p>
+                            <form  class="form__signup">
+                                
+                    
+                                <div class="form__control">
+                                        <select id="testing" name="status">
+                                                <option value="pending">Pending</option>
+                                                <option value="approved">Approve</option>
+                                                <option value="rejected">Reject</option>
+                                            </select>
+                                </div>
+            
+                    
+                                <div class="form__control">
+                                        <button type="submit" class="button" >SUBMIT</button>
+
+                                </div>
+                                
+                            </form>
+        
+                    </section>
+                    
+                    
+                </div>
+                    
+            </main>
+
+        </div>
+
+         
+        
+        <footer id="loan-footer" class="footer">
+                <p> QuickCredit <span>&copy;</span> 2019</p>
+        </footer>
+            <script src="app.js"></script> 
+</body>
+</html>
