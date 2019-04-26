@@ -79,6 +79,7 @@ header li{
     padding: 5px 20px 5px 20px;
     background: #05ff1afa;
     border-radius: 3px;
+    margin-left: 10px;
 
 
 }
@@ -311,6 +312,49 @@ footer#loan-footer{
       margin: 25px 0 20px 0;
   }
 
+  
+
+   main#intro{
+       background: #c92c75b2;
+       min-height: 500px;
+       color: #ffffff;
+       margin: 0;
+       padding: 50px;
+   }
+
+   main#intro #body-header{
+       float: left;
+       width: 50%;
+       min-height: 300px;
+       text-align: center;
+       
+
+   }
+
+   main#intro #body{
+       float: right;
+       width: 30%;
+       background: #5bd483;
+       min-height: 350px;
+       border-radius: 10px;
+       text-align: center;
+       margin: 40px 50px 0 0;
+   }
+   #body-header h3{
+       font-size: 60px;
+        margin: 0;
+        margin-top: 130px;
+   }
+
+   #body-header h4{
+        font-size: 30px;
+        margin: 0;
+        margin-top: 50px;
+}
+   #body p{
+       font-size: 30px;
+       color: #000000;
+   }
 
   /* MEDIA QUERY */
   @media(max-width: 768px){
@@ -326,7 +370,8 @@ footer#loan-footer{
      header nav li,
      aside#profile,
      main#main-profile ,
-     #main{
+     #main,#intro div, main#intro #body-header,
+     main#intro #body{
       float: none;
       text-align: center;
       width: 100%;
@@ -366,18 +411,43 @@ footer#loan-footer{
         width: 100%;
         margin-top: 0;
       }
+
+      main#intro #body{
+          min-width: 100px;
+          padding-top: 20px;
+      }
+
+      main#intro #body-header{
+          min-height: 150px;
+      }
+
+      #body-header h3{
+        font-size: 30px;
+         margin: 0;
+         margin-top: 30px;
+    }
+
+    #body-header h4{
+        font-size: 20px;
+        margin: 0;
+        margin-top: 30px;
+}
+   #body p{
+       font-size: 30px;
+       color: #000000;
+   }
       
   }
 
   @media screen and (min-width: 769px) and (max-width:899px) {
-    aside#profile{
+    aside#profile,#intro{
       float: none;
       width: 80%;
       min-height: 130px;
       width: inherit;
     }
     
-    main#main-profile{
+    main#main-profile,#intro div{
       float: none;
       width: 90%
     }
