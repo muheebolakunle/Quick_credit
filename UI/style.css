@@ -302,7 +302,15 @@ footer#loan-footer{
   .loan-container .loan-area small a:hover{
     color: #000000;
     background: #05ff1afa;
-  } 
+  }
+  
+  #testing{
+      width: 84%;
+      height: 30px;
+      font-size: 16px;
+      margin: 25px 0 20px 0;
+  }
+
 
   /* MEDIA QUERY */
   @media(max-width: 768px){
