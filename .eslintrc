@@ -1,0 +1,21 @@
+{
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "mocha": true
+      },
+     "rules": {
+      "no-use-before-define": ["error", {
+        "variables": false
+      }],
+      "no-const-assign": "warn",
+      "no-unused-vars": "warn",
+      "valid-typeof": "warn",
+      "max-len": [1, 120, 2],
+      "import/prefer-default-export": "off",
+      "linebreak-style": "off",
+      "comma-dangle": "off"
+    }
+}
