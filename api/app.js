@@ -1,11 +1,12 @@
 import express from 'express';
-import router from './v1/routes/approute';
+
+import routes from './v1/routes';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/v1', router);
+app.use('/api/v1', routes);
 
 const port = process.env.PORT || 3000;
 

@@ -1,3 +1,3 @@
 export const userStore = [];
 export const loanStore = [];
-export const repaymentstore= [];
+export const repaymentstore = [];

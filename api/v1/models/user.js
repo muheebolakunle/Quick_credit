@@ -6,7 +6,7 @@ export default class Users {
     this.lastName = user.lastName;
     this.password = user.password;
     this.address = user.address;
-    this.status = user.status;
-    this.isAdmin = user.isAdmin;
+    this.status = 'unverified';
+    this.isAdmin = false;
   }
 }
