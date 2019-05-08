@@ -78,9 +78,15 @@ const nonMatchingLogin = {
   password: 'myers15',
 };
 
+const userLogin = {
+  email: 'olaide@gmail.com',
+  password: 'bella',
+};
+
 export {
   invalidEmail, invalidfirstName, invalidlastName,
   invalidPassword, invalidAddress, validinput,
   emptyLogin, missingLogin, correctLogin,
-  notExistLogin, nonMatchingLogin, registeredInput
+  notExistLogin, nonMatchingLogin, registeredInput,
+  userLogin
 };
