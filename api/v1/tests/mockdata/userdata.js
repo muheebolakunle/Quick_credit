@@ -46,7 +46,41 @@ const validinput = {
   address: 'jshshhshs shshshshsn sssjsjjs',
 };
 
+const registeredInput = {
+  email: 'olakunle@gmail.com',
+  firstName: 'djjsjssj',
+  lastName: 'muheeb',
+  password: 'hhdjjdjdjdj',
+  address: 'jshshhshs shshshshsn sssjsjjs',
+};
+
+const emptyLogin = {
+  email: '',
+  password: '',
+};
+
+const missingLogin = {
+  password: 'password',
+};
+
+const notExistLogin = {
+  email: 'olayinka@email.com',
+  password: 'myers13',
+};
+
+const correctLogin = {
+  email: 'olakunle@gmail.com',
+  password: 'bella',
+};
+
+const nonMatchingLogin = {
+  email: 'olabisi@gmail.com',
+  password: 'myers15',
+};
+
 export {
-  invalidEmail, invalidfirstName, invalidlastName, invalidPassword, invalidAddress,
-  validinput,
+  invalidEmail, invalidfirstName, invalidlastName,
+  invalidPassword, invalidAddress, validinput,
+  emptyLogin, missingLogin, correctLogin,
+  notExistLogin, nonMatchingLogin, registeredInput
 };

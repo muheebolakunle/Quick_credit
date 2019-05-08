@@ -1,10 +1,7 @@
-import jwt from 'jsonwebtoken';
-import env from 'dotenv';
 import bcrypt from 'bcrypt';
 import { userStore } from '../datastore';
 import Users from '../models/user';
-
-env.config();
+import Jwt from '../utils/jwt';
 
 export default {
   registerUser: async (req, res) => {
@@ -26,9 +23,8 @@ export default {
     user.password = await bcrypt.hash(user.password, salt);
     await userStore.push(user);
 
-    const payload = { id: user.id, email: user.email };
-
-    const token = jwt.sign(payload, process.env.jwtPrivateKey, { expiresIn: '10h' });
+    const { id, email, isAdmin } = user;
+    const token = await Jwt.generateToken({ id, email, isAdmin });
     return res.header('x-auth-token', token).status(201).json({
       status: 201,
       data: {
@@ -37,7 +33,38 @@ export default {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+
       },
     });
   },
+
+  loginUser: async (req, res) => {
+    const user = userStore.find(signedUser => signedUser.email === req.body.email);
+    if (!user) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Invalid email or password'
+      });
+    }
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Invalid email or password'
+      });
+    }
+
+    const { id, email, isAdmin } = user;
+    const token = await Jwt.generateToken({ id, email, isAdmin });
+    return res.header('x-auth-token', token).status(200).json({
+      status: 200,
+      data: {
+        token,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
+    });
+  }
 };

@@ -3,13 +3,15 @@ import chaiHttp from 'chai-http';
 import app from '../../../app';
 
 import {
-  invalidEmail, invalidfirstName, invalidAddress, invalidlastName, invalidPassword,
-  validinput
+  invalidEmail, invalidfirstName, invalidAddress,
+  invalidlastName, invalidPassword, validinput,
+  emptyLogin, missingLogin, correctLogin,
+  notExistLogin, nonMatchingLogin, registeredInput
 } from '../mockdata/userdata';
 
 chai.use(chaiHttp);
 
-describe('Signup', () => {
+describe('Auth', () => {
   describe('POST /auth/signup', () => {
     it('should return 201 for successful registration', async () => {
       const res = await chai.request(app)
@@ -71,13 +73,56 @@ describe('Signup', () => {
       expect(res.body).to.have.property('error');
     });
 
-    it.skip('should return 409 if email is already registered', async () => {
+    it('should return 409 if email is already registered', async () => {
       const res = await chai.request(app)
         .post('/api/v1/auth/signup')
-        .send(validinput);
-      expect(res).to.have.status(400);
-      expect(res.body.status).to.be.equal(400);
+        .send(registeredInput);
+      expect(res).to.have.status(409);
+      expect(res.body.status).to.be.equal(409);
       expect(res.body).to.have.property('error');
+    });
+  });
+
+
+  describe('POST /signin', () => {
+    it('should return 400 if data fields are empty', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(emptyLogin);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 400 if one or more fields are missing', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(missingLogin);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 400 if user account not found', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(notExistLogin);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 400 for non-matching details', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(nonMatchingLogin);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 200 for successfull login', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(correctLogin);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
     });
   });
 });
