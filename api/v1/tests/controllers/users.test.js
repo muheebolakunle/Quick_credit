@@ -98,4 +98,15 @@ describe('Users', () => {
       expect(res.body).to.have.property('error');
     });
   });
+
+  describe('PATCH /users/:email/verify', () => {
+    it('should update user status to verified', async () => {
+      const res = await chai.request(app)
+        .patch(`/api/v1/users/${userLogin.email}/verify`)
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+      expect(res.body.data.status).to.be.equal('verified');
+    });
+  });
 });
