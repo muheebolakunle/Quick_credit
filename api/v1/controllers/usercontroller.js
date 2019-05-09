@@ -74,5 +74,20 @@ export default {
       data: userStore
     });
     return response;
+  },
+
+  getUser: async (req, res) => {
+    const user = userStore.find(signedUser => signedUser.email === req.params.email);
+
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User not found!.'
+      });
+    }
+    res.status(200).json({
+      status: 200,
+      data: user
+    });
   }
 };
