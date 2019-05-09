@@ -66,5 +66,13 @@ export default {
         email: user.email,
       },
     });
+  },
+
+  getAllUsers: async (req, res) => {
+    const response = res.status(200).json({
+      status: 200,
+      data: userStore
+    });
+    return response;
   }
 };
