@@ -25,36 +25,77 @@ describe('Users', () => {
     userToken = userResponse.body.data.token;
   });
 
-  // describe('GET /users', () => {
-  //   it('should return 403 if user is not an admin', async () => {
-  //     const res = await chai.request(app)
-  //       .get('/api/v1/users')
-  //       .set('x-auth-token', userToken);
-  //     expect(res).to.have.status(403);
-  //     expect(res.body).to.have.property('error');
-  //   });
+  describe('GET /users', () => {
+    it('should return 403 if user is not an admin', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users')
+        .set('x-auth-token', userToken);
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
 
-  //   it('should return 400 for invalid token', async () => {
-  //     const res = await chai.request(app)
-  //       .get('/api/v1/users')
-  //       .set('x-auth-token', 'hfhjshhdhhs');
-  //     expect(res).to.have.status(400);
-  //     expect(res.body).to.have.property('error');
-  //   });
+    it('should return 400 for invalid token', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users')
+        .set('x-auth-token', 'hfhjshhdhhs');
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
 
-  //   it('should return 401 for missing token', async () => {
-  //     const res = await chai.request(app)
-  //       .get('/api/v1/users');
-  //     expect(res).to.have.status(401);
-  //     expect(res.body).to.have.property('data');
-  //   });
+    it('should return 401 for missing token', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users');
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('error');
+    });
 
-  //   it('should get all users and return 200', async () => {
-  //     const res = await chai.request(app)
-  //       .get('/api/v1/users')
-  //       .set('x-auth-token', adminToken);
-  //     expect(res).to.have.status(200);
-  //     expect(res.body).to.have.property('data');
-  //   });
-  // });
+    it('should get all users and return 200', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+    });
+  });
+
+  describe('GET /users/:email', () => {
+    it('should return 403 if user is not an admin', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/users/${correctLogin.email}`)
+        .set('x-auth-token', userToken);
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 400 for invalid token', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/users/${correctLogin.email}`)
+        .set('x-auth-token', 'hfhjshhdhhs');
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return 401 for missing token', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/users/${correctLogin.email}`);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should get the user and return 200', async () => {
+      const res = await chai.request(app)
+        .get(`/api/v1/users/${correctLogin.email}`)
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+    });
+
+    it('should get status 404 if no user with the email', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users/dhhhnns')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('error');
+    });
+  });
 });
