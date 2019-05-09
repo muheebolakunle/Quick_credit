@@ -89,5 +89,28 @@ export default {
       status: 200,
       data: user
     });
+  },
+
+  verifyUser: async (req, res) => {
+    const user = userStore.find(signedUser => signedUser.email === req.params.email);
+
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User not found!.'
+      });
+    }
+    user.status = 'verified';
+    res.status(200).json({
+      status: 200,
+      data: {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        address: user.address,
+        status: user.status
+      }
+    });
   }
 };
