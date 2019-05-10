@@ -47,5 +47,19 @@ export default {
       data: loanStore
     });
     return response;
+  },
+
+  getLoanById: (req, res) => {
+    const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Loan record not found'
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: loan
+    });
   }
 };

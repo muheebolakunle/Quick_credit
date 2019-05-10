@@ -179,4 +179,22 @@ describe('Loans', () => {
       expect(res.body).to.have.property('error');
     });
   });
+
+  describe('GET /loans/:loanid', () => {
+    it('should return status 404 if no match is found ', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans/hdj')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return a single loan ', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans/2')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+    });
+  });
 });
