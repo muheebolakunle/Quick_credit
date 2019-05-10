@@ -67,4 +67,19 @@ export default class LoanValidation {
     }
     return next();
   }
+
+  static validateRepaymentId(req, res, next) {
+    const schema = {
+      id: Joi.number().integer().required(),
+    };
+
+    const { error } = Joi.validate(req.params, schema);
+    if (error) {
+      return res.status(400).json({
+        status: 400,
+        error: error.details[0].message,
+      });
+    }
+    return next();
+  }
 }
