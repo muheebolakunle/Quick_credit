@@ -67,4 +67,4 @@ export const loanStore = [
   }
 
 ];
-export const repaymentstore = [];
+export const repaymentStore = [];
