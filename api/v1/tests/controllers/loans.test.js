@@ -197,4 +197,34 @@ describe('Loans', () => {
       expect(res.body).to.have.property('data');
     });
   });
+
+  describe('PATCH /loans/:loanid', () => {
+    it('should return status 404 if no match is found ', async () => {
+      const res = await chai.request(app)
+        .patch('/api/v1/loans/67')
+        .set('x-auth-token', adminToken)
+        .send({ status: 'approved' });
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return an error for invalid status value ', async () => {
+      const res = await chai.request(app)
+        .patch('/api/v1/loans/2')
+        .set('x-auth-token', adminToken)
+        .send({ status: 'positive' });
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return an error for invalid status value ', async () => {
+      const res = await chai.request(app)
+        .patch('/api/v1/loans/2')
+        .set('x-auth-token', adminToken)
+        .send({ status: 'rejected' });
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+      expect(res.body.data.status).to.be.equal('rejected');
+    });
+  });
 });
