@@ -30,5 +30,13 @@ export default {
       status: 201,
       data: loan
     });
+  },
+
+  getAllLoans: (req, res) => {
+    const response = res.status(200).json({
+      status: 200,
+      data: loanStore
+    });
+    return response;
   }
 };
