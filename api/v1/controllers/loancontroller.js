@@ -33,6 +33,15 @@ export default {
   },
 
   getAllLoans: (req, res) => {
+    const { status, repaid } = req.query;
+    if (status && repaid) {
+      const data = loanStore
+        .filter(loan => loan.status === status && loan.repaid === JSON.parse(repaid));
+      return res.status(200).json({
+        status: 200,
+        data
+      });
+    }
     const response = res.status(200).json({
       status: 200,
       data: loanStore

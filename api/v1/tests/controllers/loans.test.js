@@ -143,4 +143,40 @@ describe('Loans', () => {
       expect(res.body).to.have.property('data');
     });
   });
+
+  describe('GET /loans/?status&repaid', () => {
+    it('should return all loans that are approved and fully repaid', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans?status=approved&repaid=true')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+      expect(res.body.data).to.an('array');
+    });
+
+    it('should return all loans that are approved and not fully repaid', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans?status=approved&repaid=false')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('data');
+      expect(res.body.data).to.an('array');
+    });
+
+    it('should return error for invalid status value', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans?status=panama&repaid=true')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return error for invalid repaid value', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans?status=approved&repaid=notyet')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+  });
 });

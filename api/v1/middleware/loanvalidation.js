@@ -21,4 +21,20 @@ export default class LoanValidation {
     }
     return next();
   }
+
+  static validateQuery(req, res, next) {
+    const schema = {
+      status: Joi.string().valid('approved').optional(),
+      repaid: Joi.string().valid('true', 'false').optional(),
+    };
+
+    const { error } = Joi.validate(req.query, schema);
+    if (error) {
+      return res.status(400).json({
+        status: 400,
+        error: error.details[0].message,
+      });
+    }
+    return next();
+  }
 }
