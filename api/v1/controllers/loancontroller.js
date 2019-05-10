@@ -61,5 +61,27 @@ export default {
       status: 200,
       data: loan
     });
+  },
+
+  updateLoan: (req, res) => {
+    const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Loan record not found'
+      });
+    }
+    loan.status = req.body.status;
+    return res.status(200).json({
+      status: 200,
+      data: {
+        loanid: loan.id,
+        loanAmount: loan.amount,
+        tenor: loan.tenor,
+        status: loan.status,
+        monthlyInstallment: loan.paymentInstallment,
+        interest: loan.interest
+      }
+    });
   }
 };
