@@ -130,7 +130,7 @@ export default {
   getLoanRepaymentHistory: (req, res) => {
     const loanId = req.params.id;
 
-    const loanRecord = repaymentStore.find(history => history.loanId === parseInt(loanId, 10));
+    const loanRecord = repaymentStore.filter(history => history.loanId === parseInt(loanId, 10));
     if (!loanRecord) {
       return res.status(404).json({
         status: 404,
