@@ -125,5 +125,22 @@ export default {
       status: 201,
       data: repayment
     });
+  },
+
+  getLoanRepaymentHistory: (req, res) => {
+    const loanId = req.params.id;
+
+    const loanRecord = repaymentStore.find(history => history.loanId === parseInt(loanId, 10));
+    if (!loanRecord) {
+      return res.status(404).json({
+        status: 404,
+        error: 'record not found',
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      data: loanRecord,
+    });
   }
 };
