@@ -227,4 +227,42 @@ describe('Loans', () => {
       expect(res.body.data.status).to.be.equal('rejected');
     });
   });
+
+  describe('POST /loans/:loanid/repayment', () => {
+    it('should return status 404 if no match is found ', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/loans/67/repayment')
+        .set('x-auth-token', adminToken)
+        .send({ paidAmount: '1000' });
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return an error for a bad request ', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/loans/2/repayment')
+        .set('x-auth-token', adminToken)
+        .send({ paidAmount: '1000' });
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return an error for invalid paidAmount ', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/loans/1/repayment')
+        .set('x-auth-token', adminToken)
+        .send({ paidAmount: 'rejected' });
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should create a repayment record ', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/loans/1/repayment')
+        .set('x-auth-token', adminToken)
+        .send({ paidAmount: '1000' });
+      expect(res).to.have.status(201);
+      expect(res.body).to.have.property('data');
+    });
+  });
 });

@@ -1,5 +1,6 @@
-import { userStore, loanStore } from '../datastore';
+import { userStore, loanStore, repaymentStore } from '../datastore';
 import Loans from '../models/loan';
+import Repayments from '../models/repayment';
 
 export default {
   createLoan: (req, res) => {
@@ -23,7 +24,7 @@ export default {
     }
 
     req.body.user = email;
-    req.body.id = loanStore.length > 0 ? userStore[loanStore.length - 1].id + 1 : 1;
+    req.body.id = loanStore.length > 0 ? loanStore[loanStore.length - 1].id + 1 : 1;
     const loan = new Loans(req.body);
     loanStore.push(loan);
     return res.status(201).json({
@@ -82,6 +83,47 @@ export default {
         monthlyInstallment: loan.paymentInstallment,
         interest: loan.interest
       }
+    });
+  },
+
+  createLoanRepayment: (req, res) => {
+    const paidAmount = parseFloat(req.body.paidAmount);
+
+    const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Loan record not found'
+      });
+    }
+
+    if (paidAmount > loan.balance) {
+      return res.status(400).json({
+        status: 400,
+        error: `your loan balance is ${loan.balance}!`,
+      });
+    }
+
+    const balance = loan.balance - paidAmount;
+
+    req.body.id = repaymentStore.length > 0 ? repaymentStore[repaymentStore.length - 1].id + 1 : 1;
+    req.body.paidAmount = paidAmount;
+    req.body.loanId = loan.id;
+    req.body.amount = loan.amount;
+    req.body.monthlyInstallment = loan.paymentInstallment;
+    req.body.balance = balance;
+
+    const repayment = new Repayments(req.body);
+
+    loan.balance = balance; // update balance
+    if (loan.balance === 0) {
+      loan.repaid = true;
+    }
+
+    repaymentStore.push(repayment);
+    return res.status(201).json({
+      status: 201,
+      data: repayment
     });
   }
 };
