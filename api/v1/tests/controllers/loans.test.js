@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
 
-import { userLogin, verifiedUserLogin } from '../mockdata/userdata';
+import { userLogin, verifiedUserLogin, correctLogin } from '../mockdata/userdata';
 import {
   emptyloan, missingAmount, missingTenor,
   invalidAmount, invalidTenor, correctloan
@@ -11,6 +11,7 @@ import {
 chai.use(chaiHttp);
 let verifiedUserToken;
 let userToken;
+let adminToken;
 
 describe('Loans', () => {
   before(async () => {
@@ -27,6 +28,13 @@ describe('Loans', () => {
       .send(userLogin);
 
     userToken = userResponse.body.data.token;
+
+    const adminResponse = await chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send(correctLogin);
+
+    adminToken = adminResponse.body.data.token;
   });
 
   describe('POST /loans', () => {
@@ -105,6 +113,33 @@ describe('Loans', () => {
         .set('x-auth-token', verifiedUserToken)
         .send(correctloan);
       expect(res).to.have.status(201);
+      expect(res.body).to.have.property('data');
+    });
+
+    it('should return status 402 for user with current loan', async () => {
+      const res = await chai.request(app)
+        .post('/api/v1/loans')
+        .set('x-auth-token', adminToken)
+        .send(correctloan);
+      expect(res).to.have.status(402);
+      expect(res.body).to.have.property('error');
+    });
+  });
+
+  describe('GET /loans', () => {
+    it('should return status 403 for unauthorized user ', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans')
+        .set('x-auth-token', userToken);
+      expect(res).to.have.status(403);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return status 200 for authorized user ', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(200);
       expect(res.body).to.have.property('data');
     });
   });

@@ -7,7 +7,7 @@ export default class Loans {
     this.createdOn = moment(new Date());
     this.status = 'pending';
     this.repaid = false;
-    this.tenor = loan.tenor;
+    this.tenor = parseInt(loan.tenor, 10);
     this.amount = parseFloat(loan.amount);
     this.interest = 0.05 * this.amount;
     this.paymentInstallment = (this.amount + this.interest) / this.tenor;
