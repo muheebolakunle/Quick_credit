@@ -8,3 +8,5 @@ checks:
 exclude_patterns:
   - "**/UI/"
   - "**/tests/"
+  -node_modules/
+  -build/
