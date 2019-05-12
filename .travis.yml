@@ -10,4 +10,5 @@ cache:
 script:
     - npm test
 after_success:
-    - nyc report --reporter=text-lcov | coveralls
+    -npm run coveralls
+    -npm run coverage
