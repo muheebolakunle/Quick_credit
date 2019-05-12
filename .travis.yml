@@ -7,13 +7,7 @@ env:
 cache:
   directories:
     - 'node_modules'
-before_script:
-  - yarn global add nyc
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 script:
- - npm run coveralls
- - npm run coverage
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    - npm test
+after_success:
+    - nyc report --reporter=text-lcov | coveralls
