@@ -1,6 +1,6 @@
 # Quick_credit
 
-[![Build Status](https://travis-ci.com/muheebolakunle/Quick_credit.svg?branch=develop)](https://travis-ci.com/muheebolakunle/Quick_credit)
+[![Build Status](https://travis-ci.org/muheebolakunle/Quick_credit.svg?branch=develop)](https://travis-ci.org/muheebolakunle/Quick_credit)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8793692113ba5c01d06e/maintainability)](https://codeclimate.com/github/muheebolakunle/Quick_credit/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8793692113ba5c01d06e/test_coverage)](https://codeclimate.com/github/muheebolakunle/Quick_credit/test_coverage)
 [![Coverage Status](https://coveralls.io/repos/github/muheebolakunle/Quick_credit/badge.svg?branch=develop)](https://coveralls.io/github/muheebolakunle/Quick_credit?branch=develop)
