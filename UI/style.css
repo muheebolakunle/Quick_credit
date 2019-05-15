@@ -1,7 +1,7 @@
-body{
+body,html{
     margin: 0;
     padding: 0;
-    background: #5bd483;
+    background: #f1f1f1;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -31,7 +31,7 @@ h2,h3{
 }
 
 button:hover {
- background: #05ff1afa;
+ background: #A9A9A9;
  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
@@ -56,9 +56,10 @@ input:focus {
 header{
     margin: 0;
     padding-top: 20px;
-    background: #405d27;
+    background: #016699;
     color: #ffffff;
     min-height: 60px;
+    width: 100%
 }
 
 header #branding{
@@ -71,17 +72,12 @@ header #branding h1{
 
 header nav{
     float: right;
-    margin-top: 10px;
 }
 
 header li{
     display: inline;
     padding: 5px 20px 5px 20px;
-    background: #05ff1afa;
-    border-radius: 3px;
     margin-left: 10px;
-
-
 }
 
 header a{
@@ -183,13 +179,15 @@ header a:hover{
  /* FOOTER */
  .footer {
     text-align: center;
+    background: #016699;
   }
   
   .footer p {
-    margin-top: 40px;
-    padding: 20px 0 0 0;
-    font-size: 12px;
-    color: #000;
+    /* margin-top: 40px; */
+    padding: 25px 0 25px 0;
+    font-size: 14px;
+    color: white;
+    margin: 0
   }
 
 
@@ -315,45 +313,56 @@ footer#loan-footer{
   
 
    main#intro{
-       background: #c92c75b2;
+       background-image: url(img/loan-man.jpg);
+       background-position: center;
        min-height: 500px;
-       color: #ffffff;
+       width: 100%;
+       color: #016699;
        margin: 0;
-       padding: 50px;
+       padding-top: 120px;
+       background-size: cover
    }
 
    main#intro #body-header{
-       float: left;
-       width: 50%;
-       min-height: 300px;
-       text-align: center;
+       width: 70%;
+       min-height: 100px;
+       text-align: left;
+       margin-left: 150px;
+       margin-bottom: 70px
+       /* padding: 70px,0,0,90px */
        
 
    }
 
    main#intro #body{
-       float: right;
-       width: 30%;
-       background: #5bd483;
-       min-height: 350px;
-       border-radius: 10px;
-       text-align: center;
-       margin: 40px 50px 0 0;
+       width: 70%;
+       text-align: left;
+       margin-left: 150px;
+       /* margin-top: 60px */
    }
    #body-header h3{
-       font-size: 60px;
+       font-size: 40px;
         margin: 0;
-        margin-top: 130px;
    }
 
    #body-header h4{
-        font-size: 30px;
+        font-size: 25px;
         margin: 0;
-        margin-top: 50px;
+        margin-top: 10px;
+        margin-bottom: 30px
+}
+
+#get-started{
+  width: 120px;
+  font-size: 16px;
+  min-height: 40px;
+  border-radius: 5px;
+  background: #C0C0C0;
+  cursor: pointer;
 }
    #body p{
-       font-size: 30px;
-       color: #000000;
+       font-size: 20px;
+       color: #016699
    }
 
   /* MEDIA QUERY */
@@ -411,31 +420,40 @@ footer#loan-footer{
         width: 100%;
         margin-top: 0;
       }
-
+      main#intro{
+        padding-top: 30px;
+        background-position: left
+      }
       main#intro #body{
           min-width: 100px;
           padding-top: 20px;
+          margin-left: 0px;
       }
 
       main#intro #body-header{
           min-height: 150px;
+          margin-left: 0;
       }
 
       #body-header h3{
-        font-size: 30px;
+        font-size: 40px;
          margin: 0;
          margin-top: 30px;
     }
 
     #body-header h4{
-        font-size: 20px;
-        margin: 0;
-        margin-top: 30px;
+        font-size: 25px;
+        margin-bottom: 30px;
+        margin-top: 20px;
 }
    #body p{
-       font-size: 30px;
-       color: #000000;
+       font-size: 22px;
    }
+   #get-started{
+    width: 120px;
+    font-size: 14px;
+    min-height: 30px;
+  }
       
   }
 
