@@ -37,7 +37,7 @@ button:hover {
 }
 
 input:focus {
- border-color: #000000;
+  border-color: #5bb7d4;
 }
 
 .highlight{
@@ -94,6 +94,15 @@ header a:hover{
 
 }
 
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+  cursor: pointer;
+  font-size: inherit;
+  text-transform: none;
+}
+
 /* HEADER END */
 
 /* FORM */
@@ -107,12 +116,13 @@ header a:hover{
     min-height: 400px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px
 }
 
 .form{
     display: flex;
     width: 100%;
-    background: #c92c75b2;
+    background: #ffffff;
     justify-content: center;
     box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
     flex-direction: column;
@@ -125,7 +135,7 @@ header a:hover{
     text-align: center;
     font-size: 1.3em;
     font-weight: 300;
-    color: #ffffff;
+    color: #016699;
     box-shadow: 0 2px 2px #f2f2f2;
 }
 
@@ -155,21 +165,19 @@ header a:hover{
    margin-bottom: 20px;
    text-align: center;
    font-size: 12px;
-   color: #ffffff;
+   color: #016699;
  }
  .form span a:hover{
      font-weight: bold;
-     color: #05ff1afa;
-
  }
 
  .button{
    height:38px;
    width: 84%;
-   background:green;
+   background:#C0C0C0;
    border:0;
    border-radius: 5px;
-   color:#ffffff;
+   color:#000000;
    outline: none;
    cursor: pointer;
    font-weight: bold;
@@ -359,6 +367,7 @@ footer#loan-footer{
   border-radius: 5px;
   background: #C0C0C0;
   cursor: pointer;
+  color: #000;
 }
    #body p{
        font-size: 20px;
