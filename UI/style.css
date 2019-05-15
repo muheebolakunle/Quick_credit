@@ -201,9 +201,8 @@ header a:hover{
 
 /* LOAN PAGE */
   .form #dialog{
-      background: #dc9ced;
-      color: #000;
-      border: #405d27 2px;
+      background: #016699;
+      color: #ffffff;
       border-radius: 5px;
       display: none;
       margin-bottom: 20px;
@@ -213,7 +212,7 @@ header a:hover{
   aside#profile{
     float: left;
     width: 20%;
-    background: #405d27;
+    background: #016699;
     color: #ffffff;
     margin: 20px 10px 0 15px;
     padding: 10px;
@@ -230,7 +229,7 @@ header a:hover{
     display: block;
     margin: 10px 0 10px 0;
     padding: 5px 20px 5px 20px;
-    background: #5bd483;
+    background: #C0C0C0;
     border-radius: 3px;
 
 
@@ -244,11 +243,11 @@ header a:hover{
 
 #sidenav a:hover{
     font-weight: bold;
-    color:#c92c75b2;
+    color:#016699;
 }
 
 .current{
-    color: #c92c75b2;
+    color: #016699;
     font-weight:bolder;
 
 }
@@ -256,8 +255,9 @@ header a:hover{
 footer#loan-footer{
     clear: both;
     position: relative;
-    height: 40px;
-    margin-top: -40px;
+    height: 60px;
+    margin-top: -15px;
+    margin-bottom: -25px;
   }
 
   .main-header{
