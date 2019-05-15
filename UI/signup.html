@@ -12,11 +12,11 @@
         <header>
             <div class="container">
                 <div id="branding">
-                    <h1><span class="highlight">Q</span>uick<span class="highlight">C</span>redit</h1>
+                    <h1><a href="index.html" class="reset-a">QuickCredit</a></h1>
                 </div>
                 <nav>
                     <ul>
-                        <li class="highlight"><a href="login.html">Login</a></li>
+                        <li class="highlight"><a href="login.html"><button id="get-started" type="submit" class="" >login</button></a></li>
                     </ul>
                 </nav>
             </div>
@@ -27,7 +27,7 @@
             <section class="form__wrapper">
                 <div class="form">
                 <p class="form__header">Sign Up</p>
-                <form id="signup-form" class="form__signup">
+                <form id="signup-form" class="form__signup" action="loanapplication.html">
                     <div class="form__control">
                     <input type="text" id="reg-firstname" class="form__input" placeholder="First name" required>
                     </div>
@@ -58,7 +58,7 @@
                     </div>
         
                     <div class="form__control">
-                    <button type="submit" class="button">Sign Up</button>
+                    <a href="loanapplication.html"><button id="go-to-user" type="" class="button"> Sign Up</button></a>
                     </div>
                     <span>Already have an account?
                     <a href="login.html">Sign In</a>
@@ -71,6 +71,6 @@
             <footer class="footer">
                     <p>QuickCredit <span>&copy;</span> 2019</p>
             </footer>
-    
+    <script src="app.js"></script>
 </body>
 </html>
