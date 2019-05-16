@@ -249,6 +249,7 @@ header a:hover{
 .current{
     color: #016699;
     font-weight:bolder;
+    background: #ffffff;
 
 }
 
@@ -307,8 +308,8 @@ footer#loan-footer{
   }
 
   .loan-container .loan-area small a:hover{
-    color: #000000;
-    background: #ffffff;
+    color: #ffffff;
+    background: #016699;
   }
   
   #testing{
