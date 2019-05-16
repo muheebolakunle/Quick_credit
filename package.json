@@ -8,11 +8,11 @@
   },
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./api -s",
+    "build-babel": "babel -d ./build ./server -s",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/app.js",
-    "devstart": "node_modules/.bin/nodemon api/app.js --exec babel-node --",
-    "test": "nyc --reporter=text-summary mocha -c ./api/v1/tests/**/*.js --exit --require babel-core/register",
+    "devstart": "node_modules/.bin/nodemon server/app.js --exec babel-node --",
+    "test": "nyc --reporter=text-summary mocha -c ./server/v1/tests/**/*.js --exit --require babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
