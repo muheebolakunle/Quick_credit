@@ -39,7 +39,7 @@ export const loanStore = [
     amount: 500000,
     interest: 25000,
     paymentInstallment: 43750,
-    balance: 500000
+    balance: 525000
   },
   {
     id: 2,

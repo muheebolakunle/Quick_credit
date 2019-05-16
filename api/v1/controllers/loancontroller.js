@@ -29,6 +29,7 @@ export default {
     loanStore.push(loan);
     return res.status(201).json({
       status: 201,
+      message: 'Loan application record created successfully!',
       data: loan
     });
   },
@@ -40,11 +41,23 @@ export default {
         .filter(loan => loan.status === status && loan.repaid === JSON.parse(repaid));
       return res.status(200).json({
         status: 200,
+        message: 'Successfully retrieved data!',
+        data
+      });
+    }
+
+    if (status || repaid) {
+      const data = loanStore
+        .filter(loan => loan.status === status || loan.repaid === JSON.parse(repaid));
+      return res.status(200).json({
+        status: 200,
+        message: 'Successfully retrieved data!',
         data
       });
     }
     const response = res.status(200).json({
       status: 200,
+      message: 'Successfully retrieved all loan records',
       data: loanStore
     });
     return response;
@@ -60,6 +73,7 @@ export default {
     }
     return res.status(200).json({
       status: 200,
+      message: 'Successfully retrieved loan record!',
       data: loan
     });
   },
@@ -75,6 +89,7 @@ export default {
     loan.status = req.body.status;
     return res.status(200).json({
       status: 200,
+      message: 'Successfully updated loan status!',
       data: {
         loanid: loan.id,
         loanAmount: loan.amount,
@@ -123,6 +138,7 @@ export default {
     repaymentStore.push(repayment);
     return res.status(201).json({
       status: 201,
+      message: 'Repayment record is successfully created!',
       data: repayment
     });
   },
@@ -140,6 +156,7 @@ export default {
 
     return res.status(200).json({
       status: 200,
+      message: 'Successfully retrieved repayment history record!',
       data: loanRecord,
     });
   }

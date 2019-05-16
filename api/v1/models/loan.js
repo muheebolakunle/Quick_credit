@@ -11,6 +11,6 @@ export default class Loans {
     this.amount = parseFloat(loan.amount);
     this.interest = 0.05 * this.amount;
     this.paymentInstallment = (this.amount + this.interest) / this.tenor;
-    this.balance = this.amount;
+    this.balance = this.amount + this.interest;
   }
 }
