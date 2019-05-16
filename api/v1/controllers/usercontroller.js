@@ -27,12 +27,16 @@ export default {
     const token = await Jwt.generateToken({ id, email, isAdmin });
     return res.header('x-auth-token', token).status(201).json({
       status: 201,
+      message: 'User Registered Successfully!',
       data: {
         token,
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        address: user.address,
+        status: user.status,
+        isAdmin: user.isAdmin
 
       },
     });
@@ -58,12 +62,16 @@ export default {
     const token = await Jwt.generateToken({ id, email, isAdmin });
     return res.header('x-auth-token', token).status(200).json({
       status: 200,
+      message: 'User login Successful!',
       data: {
         token,
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        address: user.address,
+        status: user.status,
+        isAdmin: user.isAdmin
       },
     });
   },
@@ -71,6 +79,7 @@ export default {
   getAllUsers: async (req, res) => {
     const response = res.status(200).json({
       status: 200,
+      message: 'Record of all users retrieved successfully! ',
       data: userStore
     });
     return response;
@@ -87,6 +96,7 @@ export default {
     }
     res.status(200).json({
       status: 200,
+      message: 'User record retrieved successfully!',
       data: user
     });
   },
@@ -103,6 +113,7 @@ export default {
     user.status = 'verified';
     res.status(200).json({
       status: 200,
+      message: 'User verification successful!',
       data: {
         email: user.email,
         firstName: user.firstName,

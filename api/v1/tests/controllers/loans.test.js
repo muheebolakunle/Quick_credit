@@ -181,9 +181,17 @@ describe('Loans', () => {
   });
 
   describe('GET /loans/:loanid', () => {
-    it('should return status 404 if no match is found ', async () => {
+    it('should return status 400 id is invalid ', async () => {
       const res = await chai.request(app)
         .get('/api/v1/loans/hdj')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should return status 404 if no match is found ', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/loans/123')
         .set('x-auth-token', adminToken);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('error');

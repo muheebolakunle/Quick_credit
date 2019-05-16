@@ -90,9 +90,17 @@ describe('Users', () => {
       expect(res.body).to.have.property('data');
     });
 
-    it('should get status 404 if no user with the email', async () => {
+    it('should get status 400 email parameter is invalid', async () => {
       const res = await chai.request(app)
         .get('/api/v1/users/dhhhnns')
+        .set('x-auth-token', adminToken);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('error');
+    });
+
+    it('should get status 404 if no user with the email', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1/users/lalala@gmail.com')
         .set('x-auth-token', adminToken);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('error');

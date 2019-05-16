@@ -68,7 +68,7 @@ export default class LoanValidation {
     return next();
   }
 
-  static validateRepaymentId(req, res, next) {
+  static validateLoanId(req, res, next) {
     const schema = {
       id: Joi.number().integer().required(),
     };
