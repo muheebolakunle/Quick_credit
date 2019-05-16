@@ -12,11 +12,12 @@
         <header>
             <div class="container">
                 <div id="branding">
-                    <h1><span class="highlight">Q</span>uick<span class="highlight">C</span>redit</h1>
+                    <h1>QuickCredit</h1>
                 </div>
                 <nav>
                     <ul>
-                        <li class="highlight"><a href="login.html">Logout</a></li>
+                        <li class="highlight"><a href="adminverifyuser.html"><button id="get-started" type="submit" class="" >Admin</button></a></li>
+                        <li class="highlight"><a href="loanapplication.html"><button id="get-started" type="submit" class="" >User</button></a></li>
                     </ul>
                 </nav>
             </div>
@@ -53,10 +54,19 @@
                                 <p>Address: </p>
                                 <p id="user-status">Status: Unverified </p>
                                 <br>
-                                Verify User
-                                <input id="verify" type="checkbox" onclick="verify()">
+                            
+                                <button class="trigger">Verify User</button>
+                                <!-- <input id="verify" class="trigger" type="checkbox" onclick="verify()"> -->
                             </div>
                     </div> 
+
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h1>Are you sure you want to verify this user?</h1>
+                            <button id="verify" class="close-button">Yes,verify</button>
+                            <button class="close-button2">No,back</button>
+                        </div>
+                    </div>
                     
                     <div class="loan-area">
                         <h3>User ID:</h3>
@@ -67,8 +77,8 @@
                                 <p>Address: </p>
                                 <p id="user-status">Status: Unverified </p>
                                 <br>
-                                Verify User
-                                <input id="verify" type="checkbox" onclick="verify()">
+                                
+                                <button class="trigger">Verify User</button>
                             </div>
                     </div> 
                     
