@@ -19,7 +19,7 @@ export default class Loan {
   async createLoan() {
     const queryString = `INSERT INTO loans (useremail, amount , tenor, interest, paymentinstallment, balance)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, useremail, amount, tenor, interest, paymentInstallment, 
-      balance, createdon`;
+      balance, createdon, status`;
     const values = [this.userEmail, this.amount, this.tenor, this.interest, this.paymentInstallment,
       this.balance
     ];
@@ -50,6 +50,15 @@ export default class Loan {
   static async getLoanById(id) {
     const queryString = 'SELECT * FROM loans WHERE id = $1';
     const values = [id];
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
+  }
+
+  static async updateLoanStatus(status, id) {
+    const queryString = `UPDATE loans
+    SET status = $1
+    WHERE id = $2 returning *`;
+    const values = [status, id];
     const { rows } = await pool.query(queryString, values);
     return rows[0];
   }
