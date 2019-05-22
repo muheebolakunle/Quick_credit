@@ -32,34 +32,27 @@ export default {
     });
   },
 
-  // getAllLoans: (req, res) => {
-  //   const { status, repaid } = req.query;
-  //   if (status && repaid) {
-  //     const data = loanStore
-  //       .filter(loan => loan.status === status && loan.repaid === JSON.parse(repaid));
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: 'Successfully retrieved data!',
-  //       data
-  //     });
-  //   }
+  getAllLoans: async (req, res) => {
+    const { repaid } = req.query;
+    const { status } = req.query;
+    // repaid = JSON.parse(repaid);
 
-  //   if (status || repaid) {
-  //     const data = loanStore
-  //       .filter(loan => loan.status === status || loan.repaid === JSON.parse(repaid));
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: 'Successfully retrieved data!',
-  //       data
-  //     });
-  //   }
-  //   const response = res.status(200).json({
-  //     status: 200,
-  //     message: 'Successfully retrieved all loan records',
-  //     data: loanStore
-  //   });
-  //   return response;
-  // },
+    if (status && repaid) {
+      const queryResponse = await Loan.queryLoans(status, repaid);
+      return res.status(200).json({
+        status: 200,
+        message: 'Successfully retrieved data!',
+        data: queryResponse
+      });
+    }
+
+    const allLoans = await Loan.getAllLoans();
+    return res.status(200).json({
+      status: 200,
+      message: 'Successfully retrieved all loan records',
+      data: allLoans
+    });
+  },
 
   // getLoanById: (req, res) => {
   //   const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));

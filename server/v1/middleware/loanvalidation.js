@@ -24,7 +24,7 @@ export default class LoanValidation {
 
   static validateQuery(req, res, next) {
     const schema = {
-      status: Joi.string().valid('approved').optional(),
+      status: Joi.string().valid('approved', 'pending', 'rejected').optional(),
       repaid: Joi.string().valid('true', 'false').optional(),
     };
 
