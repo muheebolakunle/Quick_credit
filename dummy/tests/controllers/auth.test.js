@@ -21,10 +21,10 @@ describe('Auth', () => {
       expect(res).to.have.header('x-auth-token');
       expect(res.body.status).to.be.equal(201);
       expect(res.body).to.have.property('data');
-      expect(res.body).to.have.property('token');
+      expect(res.body.data).to.have.property('token');
       expect(res.body.data).to.have.property('id');
-      expect(res.body.data).to.have.property('firstname');
-      expect(res.body.data).to.have.property('lastname');
+      expect(res.body.data).to.have.property('firstName');
+      expect(res.body.data).to.have.property('lastName');
       expect(res.body.data).to.have.property('email');
     });
 
@@ -101,11 +101,11 @@ describe('Auth', () => {
       expect(res.body).to.have.property('error');
     });
 
-    it('should return 404 if user account not found', async () => {
+    it('should return 400 if user account not found', async () => {
       const res = await chai.request(app)
         .post('/api/v1/auth/signin')
         .send(notExistLogin);
-      expect(res).to.have.status(404);
+      expect(res).to.have.status(400);
       expect(res.body).to.have.property('error');
     });
 
