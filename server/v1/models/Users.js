@@ -36,4 +36,19 @@ export default class User {
     const { rows } = await pool.query(queryString, values);
     return rows[0];
   }
+
+  static async getAllUsers() {
+    const queryString = 'SELECT * FROM users ORDER BY id';
+    const { rows } = await pool.query(queryString);
+    return rows;
+  }
+
+  static async updateUserStatus(email) {
+    const queryString = `UPDATE users
+    SET status = $1
+    WHERE email = $2 returning id, email, firstName, lastName, address, status, isAdmin, registered`;
+    const values = ['verified', email];
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
+  }
 }
