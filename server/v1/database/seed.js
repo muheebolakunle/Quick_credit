@@ -4,7 +4,6 @@ console.log('seeding database');
 
 
 (async () => {
-  let result;
   const params = [
     'olakunle@gmail.com',
     '2019-05-10T03:47:34.105Z',
@@ -17,16 +16,15 @@ console.log('seeding database');
     525000
   ];
   try {
-    result = await pool.query(`INSERT INTO loans (userEmail, createdOn, status, repaid, tenor, amount,  interest, paymentInstallment, balance))
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, params);
-    return result;
+    await pool.query(`INSERT INTO loans (useremail, createdon, status, repaid, tenor, amount,  interest, paymentinstallment, balance)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`, params);
+    return;
   } catch (error) {
     return error;
   }
 })();
 
 (async () => {
-  let result;
   const params = [
     'olabisi@gmail.com',
     '2019-05-10T03:57:18.763Z',
@@ -39,9 +37,9 @@ console.log('seeding database');
     0
   ];
   try {
-    result = await pool.query(`INSERT INTO loans (userEmail, createdOn, status, repaid, tenor, amount,  interest, paymentInstallment, balance))
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, params);
-    return result;
+    await pool.query(`INSERT INTO loans (useremail, createdon, status, repaid, tenor, amount,  interest, paymentinstallment, balance)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`, params);
+    return;
   } catch (error) {
     return error;
   }
@@ -59,7 +57,7 @@ console.log('seeding database');
   ];
   try {
     result = await pool.query(`INSERT INTO users (firstName, lastName, email, password, address, status, isAdmin)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)`, params);
+      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, params);
     return result;
   } catch (error) {
     return error;
@@ -79,7 +77,7 @@ console.log('seeding database');
   ];
   try {
     result = await pool.query(`INSERT INTO users (firstname, lastname, email, password, address, status, isadmin)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)`, params);
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, params);
     return result;
   } catch (error) {
     return error;
@@ -99,7 +97,7 @@ console.log('seeding database');
   ];
   try {
     result = await pool.query(`INSERT INTO users (firstname, lastname, email, password, address, status, isadmin)
-          VALUES ($1, $2, $3, $4, $5, $6, $7)`, params);
+          VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, params);
     return result;
   } catch (error) {
     return error;

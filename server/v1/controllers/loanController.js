@@ -70,28 +70,24 @@ export default {
     });
   },
 
-  // updateLoan: (req, res) => {
-  //   const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
-  //   if (!loan) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Loan record not found'
-  //     });
-  //   }
-  //   loan.status = req.body.status;
-  //   return res.status(200).json({
-  //     status: 200,
-  //     message: 'Successfully updated loan status!',
-  //     data: {
-  //       loanid: loan.id,
-  //       loanAmount: loan.amount,
-  //       tenor: loan.tenor,
-  //       status: loan.status,
-  //       monthlyInstallment: loan.paymentInstallment,
-  //       interest: loan.interest
-  //     }
-  //   });
-  // },
+  updateLoan: async (req, res) => {
+    const { status } = req.body;
+    const { id } = req.params;
+    const loan = await Loan.updateLoanStatus(status, id);
+
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Loan record not found'
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Successfully updated loan status!',
+      data: loan
+    });
+  },
 
   // createLoanRepayment: (req, res) => {
   //   const paidAmount = parseFloat(req.body.paidAmount);
