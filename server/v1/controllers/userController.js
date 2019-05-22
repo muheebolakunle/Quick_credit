@@ -75,54 +75,51 @@ export default {
       console.log(err);
     }
   },
+
+  getAllUsers: async (req, res) => {
+    const result = await User.getAllUsers();
+    return res.status(200).json({
+      status: 200,
+      message: 'Record of all users retrieved successfully! ',
+      data: result
+    });
+  },
+
+  getUser: async (req, res) => {
+    const user = await User.getUserByEmail(req.params.email);
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User not found!.'
+      });
+    }
+    const { id, isadmin } = req.user;
+    if (id === user.id || isadmin) {
+      return res.status(200).json({
+        status: 200,
+        message: 'User record retrieved successfully!',
+        data: user
+      });
+    }
+    return res.status(403).json({
+      status: 403,
+      error: 'Unauthorized..'
+    });
+  },
+
+  verifyUser: async (req, res) => {
+    const user = await User.updateUserStatus(req.params.email);
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User not found!.'
+      });
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: 'User verification successful!',
+      data: user
+    });
+  }
 };
-
-
-//   getAllUsers: async (req, res) => {
-//     const response = res.status(200).json({
-//       status: 200,
-//       message: 'Record of all users retrieved successfully! ',
-//       data: userStore
-//     });
-//     return response;
-//   },
-
-//   getUser: async (req, res) => {
-//     const user = userStore.find(signedUser => signedUser.email === req.params.email);
-
-//     if (!user) {
-//       return res.status(404).json({
-//         status: 404,
-//         error: 'User not found!.'
-//       });
-//     }
-//     res.status(200).json({
-//       status: 200,
-//       message: 'User record retrieved successfully!',
-//       data: user
-//     });
-//   },
-
-//   verifyUser: async (req, res) => {
-//     const user = userStore.find(signedUser => signedUser.email === req.params.email);
-
-//     if (!user) {
-//       return res.status(404).json({
-//         status: 404,
-//         error: 'User not found!.'
-//       });
-//     }
-//     user.status = 'verified';
-//     res.status(200).json({
-//       status: 200,
-//       message: 'User verification successful!',
-//       data: {
-//         email: user.email,
-//         firstName: user.firstName,
-//         lastName: user.lastName,
-//         password: user.password,
-//         address: user.address,
-//         status: user.status
-//       }
-//     });
-//   }

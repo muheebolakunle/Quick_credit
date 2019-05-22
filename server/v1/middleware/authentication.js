@@ -22,8 +22,8 @@ export const auth = async (req, res, next) => {
 };
 
 export const adminAuth = (req, res, next) => {
-  const { isAdmin } = req.user;
-  if (!isAdmin) {
+  const { isadmin } = req.user;
+  if (!isadmin) {
     return res.status(403).json({
       status: 403,
       error: 'Access denied. For Admins only.'
