@@ -46,4 +46,11 @@ export default class Loan {
     const { rows } = await pool.query(queryString, values);
     return rows;
   }
+
+  static async getLoanById(id) {
+    const queryString = 'SELECT * FROM loans WHERE id = $1';
+    const values = [id];
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
+  }
 }

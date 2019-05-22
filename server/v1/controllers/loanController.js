@@ -54,20 +54,21 @@ export default {
     });
   },
 
-  // getLoanById: (req, res) => {
-  //   const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
-  //   if (!loan) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Loan record not found'
-  //     });
-  //   }
-  //   return res.status(200).json({
-  //     status: 200,
-  //     message: 'Successfully retrieved loan record!',
-  //     data: loan
-  //   });
-  // },
+  getLoanById: async (req, res) => {
+    const loan = await Loan.getLoanById(req.params.id);
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Loan record not found'
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Successfully retrieved loan record!',
+      data: loan
+    });
+  },
 
   // updateLoan: (req, res) => {
   //   const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
