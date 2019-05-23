@@ -131,21 +131,22 @@ export default {
     }
   },
 
-  // getLoanRepaymentHistory: (req, res) => {
-  //   const loanId = req.params.id;
+  getLoanRepaymentHistory: async (req, res) => {
+    const loanId = req.params.id;
 
-  //   const loanRecord = repaymentStore.filter(history => history.loanId === parseInt(loanId, 10));
-  //   if (!loanRecord) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'record not found',
-  //     });
-  //   }
+    const loan = await Loan.getLoanById(loanId);
+    if (!loan) {
+      return res.status(404).json({
+        status: 404,
+        error: 'record not found'
+      });
+    }
 
-  //   return res.status(200).json({
-  //     status: 200,
-  //     message: 'Successfully retrieved repayment history record!',
-  //     data: loanRecord,
-  //   });
-  // }
+    const repayments = await Repayment.getRepayments(loan.id);
+    return res.status(200).json({
+      status: 200,
+      message: 'Successfully retrieved repayment history record!',
+      data: repayments,
+    });
+  }
 };

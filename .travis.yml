@@ -1,12 +1,18 @@
 language: node_js
 node_js:
-    - 'stable'
+    - '9.10.1'
 env:
     global:
-        -CC_TEST_REPORTER_ID=0439a34b56b25046adea73e114a78fe3af6603801de27f51a8644e5bbfe3309d
+        - CC_TEST_REPORTER_ID=0439a34b56b25046adea73e114a78fe3af6603801de27f51a8644e5bbfe3309d
+        - NODE_ENV=test
 cache:
   directories:
     - 'node_modules'
+before_script:
+  - yarn global add nyc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
     - npm test
 after_success:
