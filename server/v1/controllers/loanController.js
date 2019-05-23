@@ -1,6 +1,6 @@
 import Loan from '../models/Loans';
 import User from '../models/Users';
-// import Repayments from '../models/repayment';
+import Repayment from '../models/Repayments';
 
 export default {
   createLoan: async (req, res) => {
@@ -35,7 +35,6 @@ export default {
   getAllLoans: async (req, res) => {
     const { repaid } = req.query;
     const { status } = req.query;
-    // repaid = JSON.parse(repaid);
 
     if (status && repaid) {
       const queryResponse = await Loan.queryLoans(status, repaid);
@@ -89,47 +88,48 @@ export default {
     });
   },
 
-  // createLoanRepayment: (req, res) => {
-  //   const paidAmount = parseFloat(req.body.paidAmount);
+  createLoanRepayment: async (req, res) => {
+    try {
+      const { paidAmount } = req.body;
 
-  //   const loan = loanStore.find(singleLoan => singleLoan.id === parseInt(req.params.id, 10));
-  //   if (!loan) {
-  //     return res.status(404).json({
-  //       status: 404,
-  //       error: 'Loan record not found'
-  //     });
-  //   }
+      const loan = await Loan.getLoanById(req.params.id);
+      if (!loan) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Loan record not found'
+        });
+      }
+      if (loan.balance < paidAmount) {
+        return res.status(400).json({
+          status: 400,
+          error: `your loan balance is ${loan.balance}!`,
+        });
+      }
 
-  //   if (paidAmount > loan.balance) {
-  //     return res.status(400).json({
-  //       status: 400,
-  //       error: `your loan balance is ${loan.balance}!`,
-  //     });
-  //   }
+      const balance = loan.balance - paidAmount;
+      loan.balance = balance; // update balance
+      if (loan.balance === 0) {
+        loan.repaid = true;
+      }
+      await Loan.updateLoan(loan.repaid, loan.balance, loan.id);
 
-  //   const balance = loan.balance - paidAmount;
+      req.body.paidAmount = paidAmount;
+      req.body.loanId = loan.id;
+      req.body.amount = loan.amount;
+      req.body.monthlyInstallment = loan.paymentinstallment;
+      req.body.balance = balance;
 
-  //   req.body.id = repaymentStore.length > 0 ? repaymentStore[repaymentStore.length - 1].id + 1 : 1;
-  //   req.body.paidAmount = paidAmount;
-  //   req.body.loanId = loan.id;
-  //   req.body.amount = loan.amount;
-  //   req.body.monthlyInstallment = loan.paymentInstallment;
-  //   req.body.balance = balance;
-
-  //   const repayment = new Repayments(req.body);
-
-  //   loan.balance = balance; // update balance
-  //   if (loan.balance === 0) {
-  //     loan.repaid = true;
-  //   }
-
-  //   repaymentStore.push(repayment);
-  //   return res.status(201).json({
-  //     status: 201,
-  //     message: 'Repayment record is successfully created!',
-  //     data: repayment
-  //   });
-  // },
+      const repayment = new Repayment(req.body);
+      const newRepayment = await repayment.createRepayments();
+      return res.status(201).json({
+        status: 201,
+        message: 'Repayment record is successfully created!',
+        data: newRepayment
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
   // getLoanRepaymentHistory: (req, res) => {
   //   const loanId = req.params.id;
