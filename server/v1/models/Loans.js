@@ -56,9 +56,18 @@ export default class Loan {
 
   static async updateLoanStatus(status, id) {
     const queryString = `UPDATE loans
-    SET status = $1
+    SET status = $1 
     WHERE id = $2 returning *`;
     const values = [status, id];
+    const { rows } = await pool.query(queryString, values);
+    return rows[0];
+  }
+
+  static async updateLoan(repaid, balance, id) {
+    const queryString = `UPDATE loans
+    SET repaid = $1, balance = $2 
+    WHERE id = $3 returning *`;
+    const values = [repaid, balance, id];
     const { rows } = await pool.query(queryString, values);
     return rows[0];
   }
