@@ -12,7 +12,7 @@
     "build": "npm run clean && npm run build-babel",
     "start": "cross-env NODE_ENV=development npm run build && node ./build/app.js",
     "devstart": "cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
-    "test": "cross-env NODE_ENV=test nyc --reporter=text-summary mocha -c ./server/v1/tests/**/*.js --exit --require babel-core/register",
+    "test": "cross-env NODE_ENV=test nyc --reporter=text-summary mocha --timeout 15000 -c ./server/v1/tests/**/*.js --exit --require babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },

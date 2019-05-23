@@ -1,17 +1,43 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
+import pool from '../../database/index';
+import createTestDB from '../../database/initTable';
 
 import {
   invalidEmail, invalidfirstName, invalidAddress,
   invalidlastName, invalidPassword, validinput,
   emptyLogin, missingLogin, correctLogin,
-  notExistLogin, nonMatchingLogin, registeredInput
+  notExistLogin, nonMatchingLogin, registeredInput, userLogin
 } from '../mockdata/userdata';
 
+
 chai.use(chaiHttp);
+let adminToken;
+let userToken;
 
 describe('Auth', () => {
+  before(async () => {
+    try {
+      await pool.query(createTestDB.createTestDB);
+    } catch (error) {
+      console.log(error);
+    }
+    const response = await chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send(correctLogin);
+
+    adminToken = response.body.token;
+
+    const userResponse = await chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send(userLogin);
+
+    userToken = userResponse.body.token;
+  });
+
   describe('POST /auth/signup', () => {
     it('should return 201 for successful registration', async () => {
       const res = await chai.request(app)
