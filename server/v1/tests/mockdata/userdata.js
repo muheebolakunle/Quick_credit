@@ -83,6 +83,11 @@ const userLogin = {
   password: 'bella',
 };
 
+const unverifiedUserLogin = {
+  email: 'oluwatoyin@gmail.com',
+  password: 'bella',
+};
+
 const verifiedUserLogin = {
   email: 'olabisi@gmail.com',
   password: 'bella',
@@ -93,5 +98,5 @@ export {
   invalidPassword, invalidAddress, validinput,
   emptyLogin, missingLogin, correctLogin,
   notExistLogin, nonMatchingLogin, registeredInput,
-  userLogin, verifiedUserLogin
+  userLogin, verifiedUserLogin, unverifiedUserLogin,
 };

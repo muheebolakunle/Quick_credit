@@ -6,7 +6,9 @@ let connectionString;
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.DATABASE_URL_TEST;
-} else {
+}
+
+if (process.env.NODE_ENV === 'development') {
   connectionString = process.env.DATABASE_URL;
 }
 

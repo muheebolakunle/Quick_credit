@@ -28,4 +28,11 @@ export default class Repayment {
     const { rows } = await pool.query(queryString, values);
     return rows[0];
   }
+
+  static async getRepayments(loanId) {
+    const queryString = 'SELECT * FROM repayments WHERE loanid = $1 ORDER BY id';
+    const values = [loanId];
+    const { rows } = await pool.query(queryString, values);
+    return rows;
+  }
 }
