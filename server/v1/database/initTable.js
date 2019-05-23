@@ -60,9 +60,17 @@ const createTestDB = `DROP TABLE IF EXISTS repayments;
         'ajibode opp ui gate',
         'verified',
         false
+    ),
+    ('Oluwatoyin',
+        'Muheeb',
+        'oluwatoyin@gmail.com',
+        '$2b$10$zJquDFIzYAWjVVbCiaO1HOyqLynxK1qKmPAfL2dbAzWsaIioNwTeW',
+        'warri',
+        'unverified',
+        false
     );
     INSERT INTO loans (useremail, createdon, status, repaid, tenor, amount,  interest, paymentinstallment, balance)
-        VALUES (ort'olakunle@gmail.com',
+        VALUES ('olakunle@gmail.com',
         '2019-05-10T03:47:34.105Z',
         'approved',
         false,
@@ -83,4 +91,5 @@ const createTestDB = `DROP TABLE IF EXISTS repayments;
         0
     ); `;
 
-export default { createTestDB }
+
+export default { createTestDB };

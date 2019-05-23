@@ -22,14 +22,14 @@ describe('Users', () => {
       .post('/api/v1/auth/signin')
       .send(correctLogin);
 
-    adminToken = response.body.data.token;
+    adminToken = response.body.token;
 
     const userResponse = await chai
       .request(app)
       .post('/api/v1/auth/signin')
       .send(userLogin);
 
-    userToken = userResponse.body.data.token;
+    userToken = userResponse.body.token;
   });
 
   describe('GET /users', () => {
