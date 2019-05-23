@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
 import pool from '../../database/index';
-import createTestDb from '../../database/initTable';
+import createTestDB from '../../database/initTable';
 
 import { correctLogin, userLogin } from '../mockdata/userdata';
 
@@ -13,7 +13,7 @@ let userToken;
 describe('Users', () => {
   before(async () => {
     try {
-      await pool.query(createTestDb);
+      await pool.query(createTestDB.createTestDB);
     } catch (error) {
       console.log(error);
     }

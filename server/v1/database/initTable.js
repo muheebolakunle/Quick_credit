@@ -83,4 +83,4 @@ const createTestDB = `DROP TABLE IF EXISTS repayments;
         0
     ); `;
 
-export default { createTestDB };
+export default { createTestDB }
