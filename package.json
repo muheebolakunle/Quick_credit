@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test nyc --reporter=text-summary mocha --timeout 15000 -c ./server/v1/tests/**/*.js --exit --require babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "heroku-postbuild": "babel-node api/v1/database/seed"
+    "heroku-postbuild": "babel-node server/v1/database/seed"
   },
   "repository": {
     "type": "git",
