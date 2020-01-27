@@ -1,0 +1,2290 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "QuickCredit API",
+    "description": "QuickCredit is an online lending platform.",
+    "contact": {}
+  },
+  "host": "quickcredit-kuns.herokuapp.com",
+  "basePath": "/api/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "description": "User sign up",
+        "summary": "Create user account  /auth/signup",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Createuseraccount/auth/signup",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Createuseraccount~1auth~1signupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201CreatedCustomResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": 201,
+                "message": "You have signed up successfully",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJvbGF5aW5rYUBnbWFpbC5jb20iLCJpYXQiOjE1NzU2NDIwOTUsImV4cCI6MTU3Njg1MTY5NX0.Si7sc8fgOJecO7LwDNXZHrAA8YOjf5cS3PQqVmxLBs0",
+                "data": {
+                  "email": "olayinka@gmail.com",
+                  "firstname": "olayinka",
+                  "lastname": "muheeb",
+                  "address": "ajibode  ui gate",
+                  "status": "unverified",
+                  "isadmin": false,
+                  "id": 9,
+                  "registered": "2019-12-06T14:21:35.15Z"
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "440"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Fri, 06 Dec 2019 14:21:35 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"1b8-WCzJAbnYhTqKYw1r9wKCMR8wZgE\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-auth-token": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJvbGF5aW5rYUBnbWFpbC5jb20iLCJpYXQiOjE1NzU2NDIwOTUsImV4cCI6MTU3Njg1MTY5NX0.Si7sc8fgOJecO7LwDNXZHrAA8YOjf5cS3PQqVmxLBs0"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"email\" must be a valid email"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 409,
+                "error": "This email is already registered."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "description": "user can login",
+        "summary": "Login a user  /auth/signin",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Loginauser/auth/signin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Loginauser~1auth~1signinRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "It retrieves a list of all users",
+        "summary": "Get all registered users  /users",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Getallregisteredusers/users",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OKresponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Record of all users retrieved successfully! ",
+                "data": [
+                  {
+                    "id": 1,
+                    "firstname": "Olaide",
+                    "lastname": "Muheeb",
+                    "email": "olaide@gmail.com",
+                    "password": "$2b$10$PjVGFLHaft8.FMHrjGxhqe.60WPaim3LOFxHjAwi6qaUY6XOGGeqK",
+                    "isadmin": false,
+                    "address": "festac town",
+                    "status": "unverified",
+                    "registered": "2019-05-24T04:39:17.642Z"
+                  },
+                  {
+                    "id": 2,
+                    "firstname": "Olakunle",
+                    "lastname": "Muheeb",
+                    "email": "olakunle@gmail.com",
+                    "password": "$2b$10$M54YQLCOj7/OOi9TrdHxhO7rXk5zHTypjcn0X/sg8K1RANNi60LtW",
+                    "isadmin": true,
+                    "address": "festac town",
+                    "status": "verified",
+                    "registered": "2019-05-24T04:39:17.642Z"
+                  },
+                  {
+                    "id": 3,
+                    "firstname": "Olabisi",
+                    "lastname": "Muheeb",
+                    "email": "olabisi@gmail.com",
+                    "password": "$2b$10$KToRlR9TU/Ll44TuLqeRh.KfY5p82//YyG/v8kWwUmr.p8UfWK97G",
+                    "isadmin": false,
+                    "address": "ajibode opp ui gate",
+                    "status": "verified",
+                    "registered": "2019-05-24T04:39:17.642Z"
+                  },
+                  {
+                    "id": 4,
+                    "firstname": "Oluwatoyin",
+                    "lastname": "Muheeb",
+                    "email": "oluwatoyin@gmail.com",
+                    "password": "$2b$10$zJquDFIzYAWjVVbCiaO1HOyqLynxK1qKmPAfL2dbAzWsaIioNwTeW",
+                    "isadmin": false,
+                    "address": "warri",
+                    "status": "unverified",
+                    "registered": "2019-05-24T04:39:17.642Z"
+                  },
+                  {
+                    "id": 5,
+                    "firstname": "jeasd",
+                    "lastname": "yinka",
+                    "email": "testing@gmail.com",
+                    "password": "$2b$10$SlLuPJxrU9j1DZAiQogaoOEHXfrg18MjdOZ7FXs3XJ5AEk4mk2aPi",
+                    "isadmin": false,
+                    "address": "andela epic tower",
+                    "status": "unverified",
+                    "registered": "2019-05-24T04:40:04.858Z"
+                  },
+                  {
+                    "id": 6,
+                    "firstname": "jimi",
+                    "lastname": "Agbaje",
+                    "email": "Agybaje@gmail.com",
+                    "password": "$2b$10$lIESYkltDvR.6gjkW7ly5O/m3mgMzn3gT7rrWhTJUHmEJiz88Rz0G",
+                    "isadmin": false,
+                    "address": "onipanu",
+                    "status": "unverified",
+                    "registered": "2019-05-24T10:18:02.507Z"
+                  },
+                  {
+                    "id": 7,
+                    "firstname": "jeasd",
+                    "lastname": "yinka",
+                    "email": "test@gmail.com",
+                    "password": "$2b$10$uF.WXBCvZusY/ru0HRyvn.cgU1ioLzo07bZ6yiA65N2/H9qdcX8mG",
+                    "isadmin": false,
+                    "address": "andela epic tower",
+                    "status": "verified",
+                    "registered": "2019-05-24T10:46:20.598Z"
+                  },
+                  {
+                    "id": 8,
+                    "firstname": "tijani",
+                    "lastname": "yinka",
+                    "email": "tijani@gmail.com",
+                    "password": "$2b$10$p2KlyJdFrN3FVV7xlNTDJedJe/WTrNfvR4OKxXUbx04KYPo25F7wi",
+                    "isadmin": false,
+                    "address": "andela epic tower",
+                    "status": "unverified",
+                    "registered": "2019-11-20T13:11:52.085Z"
+                  },
+                  {
+                    "id": 9,
+                    "firstname": "olayinka",
+                    "lastname": "muheeb",
+                    "email": "olayinka@gmail.com",
+                    "password": "$2b$10$g2KB1b0vJE8KPmTDdHIX6Oz.AFxzNNgHsXGoHjI53sfqAUpG1SZjW",
+                    "isadmin": false,
+                    "address": "ajibode  ui gate",
+                    "status": "unverified",
+                    "registered": "2019-12-06T14:21:35.15Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "2382"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Fri, 06 Dec 2019 15:48:21 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"94e-uFRrA5en1iDZplhhUHqvM96ap5M\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "Invalid token."
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user-email}": {
+      "get": {
+        "description": "Admin can view a specific user\nparams:email",
+        "summary": "Get a specific user /users/<:email>",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Getaspecificuser/users/<:email>",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/2000Kresponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "User record retrieved successfully!",
+                "data": {
+                  "id": 9,
+                  "firstname": "olayinka",
+                  "lastname": "muheeb",
+                  "email": "olayinka@gmail.com",
+                  "password": "$2b$10$g2KB1b0vJE8KPmTDdHIX6Oz.AFxzNNgHsXGoHjI53sfqAUpG1SZjW",
+                  "isadmin": false,
+                  "address": "ajibode  ui gate",
+                  "status": "unverified",
+                  "registered": "2019-12-06T14:21:35.15Z"
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "331"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 13:40:34 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"14b-/4P1e9Br+n01uVBTTwSKnEZ3U2Q\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"email\" must be a valid email"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Unauthorized.."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "User not found!."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user-email}/verify": {
+      "patch": {
+        "description": "Admin can mark a user as verified\nPATCH /users/:email/verify",
+        "summary": "Mark a user as verified /users/<:email>/verify",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Markauserasverified/users/<:email>/verify",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OKresponse1"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "User verification successful!",
+                "data": {
+                  "id": 9,
+                  "email": "olayinka@gmail.com",
+                  "firstname": "olayinka",
+                  "lastname": "muheeb",
+                  "address": "ajibode  ui gate",
+                  "status": "verified",
+                  "isadmin": false,
+                  "registered": "2019-12-06T14:21:35.15Z"
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "249"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 16:38:57 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"f9-5xkiM/NvGGvLYp2GmGCe/T+D78E\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"email\" must be a valid email"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Access denied. For Admins only."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "User not found!."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans": {
+      "post": {
+        "description": "Create a loan application",
+        "summary": "POST /loans   Create a loan application",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "POST/loansCreatealoanapplication",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/POST~1loansCreatealoanapplicationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/201Created"
+            },
+            "examples": {
+              "application/json": {
+                "status": 201,
+                "message": "Loan application record created successfully!",
+                "data": {
+                  "id": 4,
+                  "useremail": "olayinka@gmail.com",
+                  "amount": 10000,
+                  "tenor": 3,
+                  "interest": 500,
+                  "paymentinstallment": 3500,
+                  "balance": 10500,
+                  "createdon": "2019-12-07T17:28:08.684Z",
+                  "status": "pending"
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "261"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 17:28:08 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"105-hDLqhkyjUyc8JKENvADy9BYF2k8\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"amount\" is required"
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 402,
+                "error": "You have an outstanding loan"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Admin can view all loans\nGET /loans",
+        "summary": "Get all loan applications  /loans",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "Getallloanapplications/loans",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OKresponse2"
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "883"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 18:12:34 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"373-ya1Uxk7PDKuelaTQdAMMQiUyr58\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "Invalid token."
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Access denied. For Admins only."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/{loanId}": {
+      "get": {
+        "description": "It retrieves a specific loan record using the unique loan-id",
+        "summary": "Get a specific loan application   /loans/<:loan-id>",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "Getaspecificloanapplication/loans/<:loan-id>",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OK1"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Successfully retrieved loan record!",
+                "data": {
+                  "id": 2,
+                  "useremail": "olabisi@gmail.com",
+                  "createdon": "2019-05-10T03:57:18.763Z",
+                  "status": "approved",
+                  "repaid": true,
+                  "tenor": 7,
+                  "amount": 5020000,
+                  "paymentinstallment": 753000,
+                  "balance": 0,
+                  "interest": 251000
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "268"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 20:10:26 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"10c-mNy3QOeABRRPlLsLwM8GyDZp+MY\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"id\" must be a number"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Access denied. For Admins only."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "Loan record not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/{loanId}": {
+      "patch": {
+        "description": "Admin can approve or reject a loan application",
+        "summary": "Approve or reject a loan application",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "Approveorrejectaloanapplication",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ApproveorrejectaloanapplicationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OK1"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Successfully updated loan status!",
+                "data": {
+                  "id": 4,
+                  "useremail": "olayinka@gmail.com",
+                  "createdon": "2019-12-07T17:28:08.684Z",
+                  "status": "rejected",
+                  "repaid": false,
+                  "tenor": 3,
+                  "amount": 10000,
+                  "paymentinstallment": 3500,
+                  "balance": 10500,
+                  "interest": 500
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "265"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sat, 07 Dec 2019 21:04:42 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"109-4yWsowVU1rsJ+UVNaItZsq5QfZo\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"id\" must be a number"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Access denied. For Admins only."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "Loan record not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/{loanId}/repayment": {
+      "post": {
+        "description": "It creates a loan repayment record for a specific loan.",
+        "summary": "Create a loan repayment record /loans/<:id>/repayment",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "Createaloanrepaymentrecord/loans/<:id>/repayment",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Createaloanrepaymentrecord~1loans~1%3C%3Aid%3E~1repaymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/201Created1"
+            },
+            "examples": {
+              "application/json": {
+                "status": 201,
+                "message": "Repayment record is successfully created!",
+                "data": {
+                  "id": 1,
+                  "loanid": 3,
+                  "amount": 663737,
+                  "monthlyinstallment": 139385,
+                  "paidamount": 5000,
+                  "balance": 691924,
+                  "createdon": "2019-12-08T18:17:09.15Z"
+                }
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "213"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Sun, 08 Dec 2019 18:17:09 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"d5-dyAkEz1CEeTyVK4ZiC9od3bBfJ4\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"paidAmount\" is required"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 403,
+                "error": "Access denied. For Admins only."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "Loan record not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/{loanId}/repayments": {
+      "get": {
+        "description": "It retrieves the loan repayment history of a specific loan.",
+        "summary": "View loan repayment history /loans/<loan-id>/repayments",
+        "tags": [
+          "Loans"
+        ],
+        "operationId": "Viewloanrepaymenthistory/loans/<loan-id>/repayments",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/200OK3"
+            },
+            "examples": {
+              "application/json": {
+                "status": 200,
+                "message": "Successfully retrieved repayment history record!",
+                "data": [
+                  {
+                    "id": 1,
+                    "loanid": 3,
+                    "amount": 663737,
+                    "monthlyinstallment": 139385,
+                    "paidamount": 5000,
+                    "balance": 691924,
+                    "createdon": "2019-12-08T18:17:09.15Z"
+                  },
+                  {
+                    "id": 3,
+                    "loanid": 3,
+                    "amount": 663737,
+                    "monthlyinstallment": 139385,
+                    "paidamount": 5000,
+                    "balance": 686924,
+                    "createdon": "2019-12-08T19:03:08.714Z"
+                  },
+                  {
+                    "id": 4,
+                    "loanid": 3,
+                    "amount": 663737,
+                    "monthlyinstallment": 139385,
+                    "paidamount": 686924,
+                    "balance": 0,
+                    "createdon": "2019-12-08T19:06:23.806Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "495"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json; charset=utf-8"
+              },
+              "date": {
+                "type": "string",
+                "default": "Mon, 09 Dec 2019 17:56:02 GMT"
+              },
+              "etag": {
+                "type": "string",
+                "default": "W/\"1ef-x7OhON0O71b4lFd+xzPzRGS/2u0\""
+              },
+              "server": {
+                "type": "string",
+                "default": "Cowboy"
+              },
+              "via": {
+                "type": "string",
+                "default": "1.1 vegur"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 400,
+                "error": "\"id\" must be a number"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 401,
+                "error": "Access denied. No token provided."
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/401Unauthorized"
+            },
+            "examples": {
+              "application/json": {
+                "status": 404,
+                "error": "record not found"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Createuseraccount/auth/signupRequest": {
+      "title": "Createuseraccount/auth/signupRequest",
+      "example": {
+        "email": "olayinka@gmail.com",
+        "firstName": "olayinka",
+        "lastName": "muheeb",
+        "password": "bella",
+        "address": "ajibode  ui gate"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "firstName",
+        "lastName",
+        "password",
+        "address"
+      ]
+    },
+    "201CreatedCustomResponse": {
+      "title": "201CreatedCustomResponse",
+      "example": {
+        "status": 201,
+        "message": "You have signed up successfully",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJvbGF5aW5rYUBnbWFpbC5jb20iLCJpYXQiOjE1NzU2NDIwOTUsImV4cCI6MTU3Njg1MTY5NX0.Si7sc8fgOJecO7LwDNXZHrAA8YOjf5cS3PQqVmxLBs0",
+        "data": {
+          "email": "olayinka@gmail.com",
+          "firstname": "olayinka",
+          "lastname": "muheeb",
+          "address": "ajibode  ui gate",
+          "status": "unverified",
+          "isadmin": false,
+          "id": 9,
+          "registered": "2019-12-06T14:21:35.15Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "token",
+        "data"
+      ]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "email": "olayinka@gmail.com",
+        "firstname": "olayinka",
+        "lastname": "muheeb",
+        "address": "ajibode  ui gate",
+        "status": "unverified",
+        "isadmin": false,
+        "id": 9,
+        "registered": "2019-12-06T14:21:35.15Z"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "isadmin": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "registered": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "firstname",
+        "lastname",
+        "address",
+        "status",
+        "isadmin",
+        "id",
+        "registered"
+      ]
+    },
+    "Loginauser/auth/signinRequest": {
+      "title": "Loginauser/auth/signinRequest",
+      "example": {
+        "email": "olakunle@gmail.com",
+        "password": "bella"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "200OKresponse": {
+      "title": "200OKresponse",
+      "example": {
+        "status": 200,
+        "message": "Record of all users retrieved successfully! ",
+        "data": [
+          {
+            "id": 1,
+            "firstname": "Olaide",
+            "lastname": "Muheeb",
+            "email": "olaide@gmail.com",
+            "password": "$2b$10$PjVGFLHaft8.FMHrjGxhqe.60WPaim3LOFxHjAwi6qaUY6XOGGeqK",
+            "isadmin": false,
+            "address": "festac town",
+            "status": "unverified",
+            "registered": "2019-05-24T04:39:17.642Z"
+          },
+          {
+            "id": 2,
+            "firstname": "Olakunle",
+            "lastname": "Muheeb",
+            "email": "olakunle@gmail.com",
+            "password": "$2b$10$M54YQLCOj7/OOi9TrdHxhO7rXk5zHTypjcn0X/sg8K1RANNi60LtW",
+            "isadmin": true,
+            "address": "festac town",
+            "status": "verified",
+            "registered": "2019-05-24T04:39:17.642Z"
+          },
+          {
+            "id": 3,
+            "firstname": "Olabisi",
+            "lastname": "Muheeb",
+            "email": "olabisi@gmail.com",
+            "password": "$2b$10$KToRlR9TU/Ll44TuLqeRh.KfY5p82//YyG/v8kWwUmr.p8UfWK97G",
+            "isadmin": false,
+            "address": "ajibode opp ui gate",
+            "status": "verified",
+            "registered": "2019-05-24T04:39:17.642Z"
+          },
+          {
+            "id": 4,
+            "firstname": "Oluwatoyin",
+            "lastname": "Muheeb",
+            "email": "oluwatoyin@gmail.com",
+            "password": "$2b$10$zJquDFIzYAWjVVbCiaO1HOyqLynxK1qKmPAfL2dbAzWsaIioNwTeW",
+            "isadmin": false,
+            "address": "warri",
+            "status": "unverified",
+            "registered": "2019-05-24T04:39:17.642Z"
+          },
+          {
+            "id": 5,
+            "firstname": "jeasd",
+            "lastname": "yinka",
+            "email": "testing@gmail.com",
+            "password": "$2b$10$SlLuPJxrU9j1DZAiQogaoOEHXfrg18MjdOZ7FXs3XJ5AEk4mk2aPi",
+            "isadmin": false,
+            "address": "andela epic tower",
+            "status": "unverified",
+            "registered": "2019-05-24T04:40:04.858Z"
+          },
+          {
+            "id": 6,
+            "firstname": "jimi",
+            "lastname": "Agbaje",
+            "email": "Agybaje@gmail.com",
+            "password": "$2b$10$lIESYkltDvR.6gjkW7ly5O/m3mgMzn3gT7rrWhTJUHmEJiz88Rz0G",
+            "isadmin": false,
+            "address": "onipanu",
+            "status": "unverified",
+            "registered": "2019-05-24T10:18:02.507Z"
+          },
+          {
+            "id": 7,
+            "firstname": "jeasd",
+            "lastname": "yinka",
+            "email": "test@gmail.com",
+            "password": "$2b$10$uF.WXBCvZusY/ru0HRyvn.cgU1ioLzo07bZ6yiA65N2/H9qdcX8mG",
+            "isadmin": false,
+            "address": "andela epic tower",
+            "status": "verified",
+            "registered": "2019-05-24T10:46:20.598Z"
+          },
+          {
+            "id": 8,
+            "firstname": "tijani",
+            "lastname": "yinka",
+            "email": "tijani@gmail.com",
+            "password": "$2b$10$p2KlyJdFrN3FVV7xlNTDJedJe/WTrNfvR4OKxXUbx04KYPo25F7wi",
+            "isadmin": false,
+            "address": "andela epic tower",
+            "status": "unverified",
+            "registered": "2019-11-20T13:11:52.085Z"
+          },
+          {
+            "id": 9,
+            "firstname": "olayinka",
+            "lastname": "muheeb",
+            "email": "olayinka@gmail.com",
+            "password": "$2b$10$g2KB1b0vJE8KPmTDdHIX6Oz.AFxzNNgHsXGoHjI53sfqAUpG1SZjW",
+            "isadmin": false,
+            "address": "ajibode  ui gate",
+            "status": "unverified",
+            "registered": "2019-12-06T14:21:35.15Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data1"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data1": {
+      "title": "Data1",
+      "example": {
+        "id": 1,
+        "firstname": "Olaide",
+        "lastname": "Muheeb",
+        "email": "olaide@gmail.com",
+        "password": "$2b$10$PjVGFLHaft8.FMHrjGxhqe.60WPaim3LOFxHjAwi6qaUY6XOGGeqK",
+        "isadmin": false,
+        "address": "festac town",
+        "status": "unverified",
+        "registered": "2019-05-24T04:39:17.642Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "isadmin": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "registered": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "firstname",
+        "lastname",
+        "email",
+        "password",
+        "isadmin",
+        "address",
+        "status",
+        "registered"
+      ]
+    },
+    "2000Kresponse": {
+      "title": "2000Kresponse",
+      "example": {
+        "status": 200,
+        "message": "User record retrieved successfully!",
+        "data": {
+          "id": 9,
+          "firstname": "olayinka",
+          "lastname": "muheeb",
+          "email": "olayinka@gmail.com",
+          "password": "$2b$10$g2KB1b0vJE8KPmTDdHIX6Oz.AFxzNNgHsXGoHjI53sfqAUpG1SZjW",
+          "isadmin": false,
+          "address": "ajibode  ui gate",
+          "status": "unverified",
+          "registered": "2019-12-06T14:21:35.15Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data1"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "200OKresponse1": {
+      "title": "200OKresponse1",
+      "example": {
+        "status": 200,
+        "message": "User verification successful!",
+        "data": {
+          "id": 9,
+          "email": "olayinka@gmail.com",
+          "firstname": "olayinka",
+          "lastname": "muheeb",
+          "address": "ajibode  ui gate",
+          "status": "verified",
+          "isadmin": false,
+          "registered": "2019-12-06T14:21:35.15Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "POST/loansCreatealoanapplicationRequest": {
+      "title": "POST/loansCreatealoanapplicationRequest",
+      "example": {
+        "amount": "4500",
+        "tenor": "6"
+      },
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "tenor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "tenor"
+      ]
+    },
+    "201Created": {
+      "title": "201Created",
+      "example": {
+        "status": 201,
+        "message": "Loan application record created successfully!",
+        "data": {
+          "id": 4,
+          "useremail": "olayinka@gmail.com",
+          "amount": 10000,
+          "tenor": 3,
+          "interest": 500,
+          "paymentinstallment": 3500,
+          "balance": 10500,
+          "createdon": "2019-12-07T17:28:08.684Z",
+          "status": "pending"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data4"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data4": {
+      "title": "Data4",
+      "example": {
+        "id": 4,
+        "useremail": "olayinka@gmail.com",
+        "amount": 10000,
+        "tenor": 3,
+        "interest": 500,
+        "paymentinstallment": 3500,
+        "balance": 10500,
+        "createdon": "2019-12-07T17:28:08.684Z",
+        "status": "pending"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "useremail": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "interest": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paymentinstallment": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "balance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdon": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "useremail",
+        "amount",
+        "tenor",
+        "interest",
+        "paymentinstallment",
+        "balance",
+        "createdon",
+        "status"
+      ]
+    },
+    "401Unauthorized": {
+      "title": "401Unauthorized",
+      "example": {
+        "status": 401,
+        "error": "Access denied. No token provided."
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "error"
+      ]
+    },
+    "200OKresponse2": {
+      "title": "200OKresponse2",
+      "example": {
+        "status": 200,
+        "message": "Successfully retrieved data!",
+        "data": [
+          {
+            "id": 2,
+            "useremail": "olabisi@gmail.com",
+            "createdon": "2019-05-10T03:57:18.763Z",
+            "status": "approved",
+            "repaid": true,
+            "tenor": 7,
+            "amount": 5020000,
+            "paymentinstallment": 753000,
+            "balance": 0,
+            "interest": 251000
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data5"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data5": {
+      "title": "Data5",
+      "example": {
+        "id": 1,
+        "useremail": "olakunle@gmail.com",
+        "createdon": "2019-05-10T03:47:34.105Z",
+        "status": "approved",
+        "repaid": false,
+        "tenor": 12,
+        "amount": 500000,
+        "paymentinstallment": 43750,
+        "balance": 525000,
+        "interest": 25000
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "useremail": {
+          "type": "string"
+        },
+        "createdon": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "repaid": {
+          "type": "boolean"
+        },
+        "tenor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paymentinstallment": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "balance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "interest": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id",
+        "useremail",
+        "createdon",
+        "status",
+        "repaid",
+        "tenor",
+        "amount",
+        "paymentinstallment",
+        "balance",
+        "interest"
+      ]
+    },
+    "200OK": {
+      "title": "200OK",
+      "example": {
+        "status": 200,
+        "message": "Successfully retrieved data!",
+        "data": [
+          {
+            "id": 1,
+            "useremail": "olakunle@gmail.com",
+            "createdon": "2019-05-10T03:47:34.105Z",
+            "status": "approved",
+            "repaid": false,
+            "tenor": 12,
+            "amount": 500000,
+            "paymentinstallment": 43750,
+            "balance": 525000,
+            "interest": 25000
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data5"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "200OK1": {
+      "title": "200OK1",
+      "example": {
+        "status": 200,
+        "message": "Successfully retrieved loan record!",
+        "data": {
+          "id": 2,
+          "useremail": "olabisi@gmail.com",
+          "createdon": "2019-05-10T03:57:18.763Z",
+          "status": "approved",
+          "repaid": true,
+          "tenor": 7,
+          "amount": 5020000,
+          "paymentinstallment": 753000,
+          "balance": 0,
+          "interest": 251000
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data5"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "ApproveorrejectaloanapplicationRequest": {
+      "title": "ApproveorrejectaloanapplicationRequest",
+      "example": {
+        "status": "approved"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "Createaloanrepaymentrecord/loans/<:id>/repaymentRequest": {
+      "title": "Createaloanrepaymentrecord/loans/<:id>/repaymentRequest",
+      "example": {
+        "paidAmount": "500"
+      },
+      "type": "object",
+      "properties": {
+        "paidAmount": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "paidAmount"
+      ]
+    },
+    "201Created1": {
+      "title": "201Created1",
+      "example": {
+        "status": 201,
+        "message": "Repayment record is successfully created!",
+        "data": {
+          "id": 1,
+          "loanid": 3,
+          "amount": 663737,
+          "monthlyinstallment": 139385,
+          "paidamount": 5000,
+          "balance": 691924,
+          "createdon": "2019-12-08T18:17:09.15Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data10"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data10": {
+      "title": "Data10",
+      "example": {
+        "id": 1,
+        "loanid": 3,
+        "amount": 663737,
+        "monthlyinstallment": 139385,
+        "paidamount": 5000,
+        "balance": 691924,
+        "createdon": "2019-12-08T18:17:09.15Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "loanid": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "monthlyinstallment": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paidamount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "balance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdon": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "loanid",
+        "amount",
+        "monthlyinstallment",
+        "paidamount",
+        "balance",
+        "createdon"
+      ]
+    },
+    "200OK3": {
+      "title": "200OK3",
+      "example": {
+        "status": 200,
+        "message": "Successfully retrieved repayment history record!",
+        "data": [
+          {
+            "id": 1,
+            "loanid": 3,
+            "amount": 663737,
+            "monthlyinstallment": 139385,
+            "paidamount": 5000,
+            "balance": 691924,
+            "createdon": "2019-12-08T18:17:09.15Z"
+          },
+          {
+            "id": 3,
+            "loanid": 3,
+            "amount": 663737,
+            "monthlyinstallment": 139385,
+            "paidamount": 5000,
+            "balance": 686924,
+            "createdon": "2019-12-08T19:03:08.714Z"
+          },
+          {
+            "id": 4,
+            "loanid": 3,
+            "amount": 663737,
+            "monthlyinstallment": 139385,
+            "paidamount": 686924,
+            "balance": 0,
+            "createdon": "2019-12-08T19:06:23.806Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data10"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "It contains all authentication endpoints "
+    },
+    {
+      "name": "Users",
+      "description": "it contains all users endpoints "
+    },
+    {
+      "name": "Loans",
+      "description": "Contains all loans endpoints."
+    }
+  ]
+}
