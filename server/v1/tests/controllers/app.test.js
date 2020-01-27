@@ -20,7 +20,6 @@ describe('App', () => {
         .get('/api/v1/');
 
       expect(res).to.have.status(200);
-      expect(res.body).to.contain('Welcome to the Quick Credit API');
     });
   });
 });
